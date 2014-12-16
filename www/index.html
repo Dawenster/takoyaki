@@ -28,7 +28,32 @@
     <ion-pane>
       <ion-content>
         <div ng-controller="PlayCtrl">
+          <!-- Image of takoyaki -->
+          <div class="row">
 
+          </div>
+
+          <!-- Shows blanks to be guessed -->
+          <div class="row">
+            
+          </div>
+
+          <!-- Shows letters -->
+          <div class="row">
+            <div class="col" ng-repeat="letter in lettersAToI">
+              {{letter}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" ng-repeat="letter in lettersJToR">
+              {{letter}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" ng-repeat="letter in lettersSToZ">
+              {{letter}}
+            </div>
+          </div>
         </div>
       </ion-content>
     </ion-pane>
