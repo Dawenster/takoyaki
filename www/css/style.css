@@ -1,4 +1,14 @@
 /* Empty. Add your own CSS if you like */
+.scroll {
+  height: 100%;
+}
+
+.letters-section {
+  position: absolute;
+  bottom: 0px !important;
+  width: 100%;
+}
+
 .letter-row {
   margin-bottom: 10px;
   text-align: center;
