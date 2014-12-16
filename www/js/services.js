@@ -10,19 +10,11 @@ app.factory("Answer", function($localstorage) {
 app.factory("Letters", function() {
   var Letters = {};
 
-  Letters.aToI = function() {
-    return ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
-  }
-  
-  Letters.jToR = function() {
-    return ["J", "K", "L", "M", "N", "O", "P", "Q", "R"];
+  Letters.all = function() {
+    return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", ""];
   }
 
-  Letters.sToZ = function() {
-    return ["S", "T", "U", "V", "W", "X", "Y", "Z", ""];
-  }
-
-  return Letters
+  return Letters;
 });
 
 app.factory('$localstorage', ['$window', function($window) {

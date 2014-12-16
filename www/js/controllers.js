@@ -1,10 +1,6 @@
 var app = angular.module('starter.controllers', []);
 
-app.controller('PlayCtrl', function($scope, Letters) {
-  $scope.lettersAToI = Letters.aToI();
-  $scope.lettersJToR = Letters.jToR();
-  $scope.lettersSToZ = Letters.sToZ();
-
+app.controller('PlayCtrl', function($scope) {
   var root_url = "http://localhost:3000/api/";
   // var root_url = "http://takoyaki.herokuapp.com/api/";
   var game_details_url = root_url + "game_details";
@@ -27,4 +23,12 @@ app.controller('PlayCtrl', function($scope, Letters) {
   }).fail(function() {
     console.log("I'm a failure...");
   });
+});
+
+app.controller('LettersCtrl', function($scope, Letters) {
+  var letters = Letters.all();
+
+  $scope.firstRowLetters = letters.slice(0, 9);
+  $scope.secondRowLetters = letters.slice(9, 18);
+  $scope.thirdRowLetters = letters.slice(18, 27);
 });

@@ -36,22 +36,25 @@
 
           <!-- Shows blanks to be guessed -->
           <div class="row">
-            
+            {{phrase.text}}
           </div>
 
-          <!-- Shows letters -->
+        </div>
+
+        <!-- Shows letters -->
+        <div ng-controller="LettersCtrl" class="letters-section">
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in lettersAToI">
+            <div class="col letter" ng-repeat="letter in firstRowLetters">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in lettersJToR">
+            <div class="col letter" ng-repeat="letter in secondRowLetters">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in lettersSToZ">
+            <div class="col letter" ng-repeat="letter in thirdRowLetters">
               {{letter}}
             </div>
           </div>
