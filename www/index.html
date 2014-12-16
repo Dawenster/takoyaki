@@ -44,17 +44,17 @@
         <!-- Shows letters -->
         <div ng-controller="LettersCtrl" class="letters-section">
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in firstRowLetters">
+            <div class="col letter" ng-repeat="letter in firstRowLetters" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in secondRowLetters">
+            <div class="col letter" ng-repeat="letter in secondRowLetters" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in thirdRowLetters">
+            <div class="col letter" ng-repeat="letter in thirdRowLetters" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
               {{letter}}
             </div>
           </div>
