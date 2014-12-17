@@ -63,4 +63,13 @@ app.controller('LettersCtrl', function($scope, Letters) {
       }
     };
 
+    if (isComplete()) {
+      // alert("All done!");
+    }
+  }
+
+  function isComplete() {
+    var coveredLetters = $(".covered");
+    return coveredLetters.length == 0;
+  }
 });
