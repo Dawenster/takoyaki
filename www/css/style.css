@@ -5,7 +5,7 @@
 
 .word-letters-holder {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .word-letter-row {
@@ -15,8 +15,23 @@
 .word-letter {
   font-weight: bold;
   font-size: 28px;
-  padding: 5px;
+  padding: 2px;
+  margin: 0px 2px;
   text-align: center;
+  width: 25px;
+  display: inline-block;
+}
+
+.word-letter.covered {
+  border-bottom: 5px solid black;
+}
+
+.word-letter.blank {
+  border-bottom: none !important;
+}
+
+.word-letter.covered .inner-letter {
+  opacity: 0;
 }
 
 .letters-section {

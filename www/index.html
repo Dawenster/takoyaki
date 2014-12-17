@@ -37,9 +37,11 @@
           <!-- Shows blanks to be guessed -->
           <div class="word-letters-holder">
             <div class="word-letter-row" ng-repeat="word in splitPhraseText track by $index">
-              <span class="word-letter" ng-repeat="letter in word track by $index">
-                {{letter}}
-              </span>
+              <div class="word-letter covered" ng-repeat="letter in word track by $index" ng-class="letter=='' ? 'blank' : ''">
+                <div class="inner-letter">
+                  {{letter}}
+                </div>
+              </div>
             </div>
           </div>
         </div>

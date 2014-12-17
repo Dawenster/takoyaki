@@ -33,7 +33,7 @@ app.controller('PlayCtrl', function($scope) {
     for (var i = 0; i < words.length; i++) {
       if (phraseArr[line]) {
         if (phraseArr[line].length + words[i].length < 11) {
-          phraseArr[line].push(" ");
+          phraseArr[line].push("");
           for (var x = 0; x < words[i].length; x++) {
             phraseArr[line].push(words[i][x]);
           };
