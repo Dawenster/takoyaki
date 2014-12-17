@@ -32,4 +32,25 @@ app.factory('$localstorage', ['$window', function($window) {
       return JSON.parse($window.localStorage[key] || '{}');
     }
   }
-}])
+}]);
+
+app.factory('Api', function($http) {
+  var root_url = "http://localhost:3000/api/";
+  // var root_url = "http://takoyaki.herokuapp.com/api/";
+  var game_details_url = root_url + "game_details";
+  var next_phrase_url = root_url + "next_phrase";
+
+  return {
+    gameDetails: function() {
+      return $http.get(game_details_url).then(function(result) {
+        return result.guesses;
+      });
+    },
+    nextPhrase: function() {
+      return $http.get(next_phrase_url).then(function(result) {
+        var phrase = jQuery.parseJSON(result.data.phrase);
+        return phrase;
+      });
+    }
+  }
+});

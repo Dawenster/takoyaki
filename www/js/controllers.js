@@ -1,28 +1,12 @@
 var app = angular.module('starter.controllers', []);
 
-app.controller('PlayCtrl', function($scope) {
-  var root_url = "http://localhost:3000/api/";
-  // var root_url = "http://takoyaki.herokuapp.com/api/";
-  var game_details_url = root_url + "game_details";
-  var next_phrase_url = root_url + "next_phrase";
-
-  $.ajax({
-    url: game_details_url,
-    async: false
-  }).done(function(result) {
-    $scope.guesses = result.guesses;
-  }).fail(function() {
-    console.log("I'm a failure...");
+app.controller('PlayCtrl', function($scope, Api) {
+  Api.gameDetails().then(function(guesses) {
+    $scope.guesses = guesses;
   });
 
-  $.ajax({
-    url: next_phrase_url,
-    async: false
-  }).done(function(result) {
-    var phrase = jQuery.parseJSON(result.phrase);
+  Api.nextPhrase().then(function(phrase) {
     $scope.splitPhraseText = splitPhrase(phrase.text);
-  }).fail(function() {
-    console.log("I'm a failure...");
   });
 
   function splitPhrase(phrase) {
