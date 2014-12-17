@@ -37,7 +37,7 @@
           <!-- Shows blanks to be guessed -->
           <div class="word-letters-holder">
             <div class="word-letter-row" ng-repeat="word in splitPhraseText track by $index">
-              <div class="word-letter covered" ng-repeat="letter in word track by $index" ng-class="letter=='' ? 'blank' : ''">
+              <div class="word-letter covered" ng-repeat="letter in word track by $index" ng-class="letter=='' ? 'blank' : ''" value="{{letter}}">
                 <div class="inner-letter">
                   {{letter}}
                 </div>
@@ -49,17 +49,17 @@
         <!-- Shows letters -->
         <div ng-controller="LettersCtrl" class="letters-section">
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in firstRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
+            <div class="col letter" ng-repeat="letter in firstRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true; clickedLetter(letter)">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in secondRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
+            <div class="col letter" ng-repeat="letter in secondRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true; clickedLetter(letter)">
               {{letter}}
             </div>
           </div>
           <div class="row letter-row">
-            <div class="col letter" ng-repeat="letter in thirdRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true">
+            <div class="col letter" ng-repeat="letter in thirdRowLetters track by $index" ng-class="letterClicked ? 'strikethrough' : ''" ng-click="letterClicked=true; clickedLetter(letter)">
               {{letter}}
             </div>
           </div>

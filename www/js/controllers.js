@@ -54,4 +54,13 @@ app.controller('LettersCtrl', function($scope, Letters) {
   $scope.firstRowLetters = letters.slice(0, 9);
   $scope.secondRowLetters = letters.slice(9, 17);
   $scope.thirdRowLetters = letters.slice(17, 26);
+
+  $scope.clickedLetter = function(letter) {
+    var wordLetters = $(".word-letter");
+    for (var i = 0; i < wordLetters.length; i++) {
+      if ($(wordLetters[i]).attr("value").toLowerCase() == letter.toLowerCase()) {
+        $(wordLetters[i]).removeClass("covered");
+      }
+    };
+
 });
