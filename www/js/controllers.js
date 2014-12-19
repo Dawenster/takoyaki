@@ -46,15 +46,34 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase) {
   $scope.clickedLetters = [];
 
   $scope.clickedLetter = function(letter) {
-    $scope.clickedLetters.push(letter)
-    uncoverLetters(letter);
-    strikeoutClickedLetters();
-
+    makeGuess(letter);
     if (isComplete()) {
-      $scope.clickedLetters = [];
-      Phrase.coverEverythingUp();
-      Api.nextPhrase();
+      gameOver()
+    } else if (Api.noMoreGuesses()) {
+      alert("You lose!");
+      gameOver()
     }
+  }
+
+  function makeGuess(letter) {
+    $scope.clickedLetters.push(letter)
+
+    var original_num_covered_letters = $(".covered").length;
+    uncoverLetters(letter);
+    var subsequent_num_covered_letters = $(".covered").length;
+
+    if (original_num_covered_letters == subsequent_num_covered_letters) {
+      Api.reduceGuess();
+    }
+
+    strikeoutClickedLetters();
+  }
+
+  function gameOver() {
+    $scope.clickedLetters = [];
+    Phrase.coverEverythingUp();
+    Api.nextPhrase();
+    Api.resetGuesses();
   }
 
   function uncoverLetters(letter) {

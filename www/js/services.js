@@ -38,12 +38,14 @@ app.factory('Api', function($http, $rootScope) {
 
   var Api = {};
 
+  Api.original_guesses = null;
   Api.guesses = null;
   Api.phrase = null;
 
   Api.gameDetails = function() {
     $http.get(game_details_url).then(function(result) {
-      Api.guesses = result.data.guesses;
+      Api.original_guesses = result.data.guesses;
+      Api.guesses = Api.original_guesses;
       $rootScope.$broadcast("guessesUpdated");
     });
   }
@@ -54,6 +56,18 @@ app.factory('Api', function($http, $rootScope) {
       Api.phrase = phrase;
       $rootScope.$broadcast("phraseUpdated");
     });
+  }
+
+  Api.reduceGuess = function() {
+    Api.guesses -= 1;
+  }
+
+  Api.noMoreGuesses = function() {
+    return Api.guesses == 0;
+  }
+
+  Api.resetGuesses = function() {
+    Api.guesses = Api.original_guesses;
   }
 
   return Api;
