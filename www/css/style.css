@@ -3,6 +3,23 @@
   height: 100%;
 }
 
+.images-holder {
+  height: 100px;
+  position: relative;
+}
+
+.octo {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+.stick {
+  position: absolute;
+  top: 45px;
+  right: -50px;
+}
+
 .word-letters-holder {
   text-align: center;
   margin-top: 30px;
