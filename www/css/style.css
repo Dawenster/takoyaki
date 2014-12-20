@@ -94,7 +94,7 @@
   transform:rotate(-45deg);
 }
 
-.guesses-remaining-text {
+.guesses-remaining-text, .current-love-points, .current-love-points-status {
   text-align: center;
   font-size: 16px;
 }

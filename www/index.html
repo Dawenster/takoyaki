@@ -74,16 +74,34 @@
           </div>
         </div>
         <div ng-controller="HelpCtrl" class="help-section" style="display: none;">
-          <div class="guesses-remaining-text">
-            <span>
-              You have 
-            </span>
-            <span style="font-weight: bold;">
-              {{guessesRemaining}}
-            </span>
-            <span>
-              {{guessesRemaining | pluralizeGuesses}} remaining!
-            </span>
+          <div ng-show="!showHint">
+            <div class="guesses-remaining-text">
+              <span>
+                Guesses remaining: 
+              </span>
+              <span style="font-weight: bold;">
+                {{guessesRemaining}}
+              </span>
+            </div>
+            <div class="current-love-points">
+              <span>
+                Love points: 
+              </span>
+              <span style="font-weight: bold;">
+                {{lovePoints}}
+              </span>
+            </div>
+            <div class="current-love-points-status">
+              <span>
+                Status: 
+              </span>
+              <span style="font-weight: bold;">
+                {{lovePoints | loveLevel}}
+              </span>
+            </div>
+          </div>
+          <div ng-show="showHint">
+            This be the hint!
           </div>
           <div>
             <div class="row">
@@ -93,8 +111,8 @@
                 </button>
               </div>
               <div class="col col-50" style="text-align: center;">
-                <button class="button button-energized" ng-click="">
-                  Show hint
+                <button class="button button-energized" ng-click="showHint=!showHint">
+                  {{showHintButtonText}}
                 </button>
               </div>
               <div class="col col-25" style="text-align: right;">

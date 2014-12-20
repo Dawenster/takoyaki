@@ -54,14 +54,15 @@ app.factory('Api', function($http, $rootScope) {
   Api.guesses = null;
   Api.phrase = null;
   Api.stepSize = 0;
+  Api.lovePoints = 0;
 
   Api.gameDetails = function() {
     $http.get(game_details_url).then(function(result) {
       Api.original_guesses = result.data.guesses;
       Api.guesses = Api.original_guesses;
       setStepSize(Api.guesses);
-      $rootScope.$broadcast("guessesSetup");
-      $rootScope.$broadcast("guessesUpdated");
+      $rootScope.$broadcast("detailsSetup");
+      $rootScope.$broadcast("detailsUpdated");
     });
   }
 
@@ -75,7 +76,7 @@ app.factory('Api', function($http, $rootScope) {
 
   Api.reduceGuess = function() {
     Api.guesses -= 1;
-    $rootScope.$broadcast("guessesUpdated");
+    $rootScope.$broadcast("detailsUpdated");
   }
 
   Api.noMoreGuesses = function() {
@@ -95,12 +96,20 @@ app.factory('Api', function($http, $rootScope) {
   return Api;
 });
 
-app.filter('pluralizeGuesses', function() {
-  return function(guess) {
-    if (guess == 1) {
-      return " guess"
+app.filter('loveLevel', function() {
+  return function(lovePoints) {
+    if (lovePoints <= 10) {
+      return "Puppy lover";
+    } else if (lovePoints <= 25 ) {
+      return "Mediocre lover";
+    } else if (lovePoints <= 50) {
+      return "Mediocre+ lover";
+    } else if (lovePoints <= 100) {
+      return "B- lover";
+    } else if (lovePoints < 238) {
+      return "But I lover";
     } else {
-      return " guesses"
+      return "Forever lover :)"
     }
   }
 });

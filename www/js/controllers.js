@@ -4,7 +4,7 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
   Api.gameDetails();
   Api.nextPhrase();
 
-  $scope.$on('guessesSetup', function() {
+  $scope.$on('detailsSetup', function() {
     $scope.guesses = Api.guesses;
   });
 
@@ -112,14 +112,21 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
 });
 
 app.controller('HelpCtrl', function($scope, Api) {
-  $scope.$on('guessesUpdated', function() {
+  $scope.showHint = false;
+
+  $scope.$on('detailsUpdated', function() {
     $scope.guessesRemaining = Api.guesses;
+    $scope.lovePoints = Api.lovePoints;
   });
 
   $scope.clickedBack = function() {
     $(".letters-section").toggle();
     $(".help-section").toggle();
   }
+
+  $scope.$watch('showHint', function(){
+    $scope.showHintButtonText = $scope.showHint ? 'Hide hint' : 'Show hint';
+  })
 });
 
 
