@@ -4,7 +4,7 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
   Api.gameDetails();
   Api.nextPhrase();
 
-  $scope.$on('guessesUpdated', function() {
+  $scope.$on('guessesSetup', function() {
     $scope.guesses = Api.guesses;
   });
 
@@ -40,8 +40,8 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
 app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations) {
   var letters = Letters.all();
   $scope.firstRowLetters = letters.slice(0, 9);
-  $scope.secondRowLetters = letters.slice(9, 17);
-  $scope.thirdRowLetters = letters.slice(17, 26);
+  $scope.secondRowLetters = letters.slice(9, 18);
+  $scope.thirdRowLetters = letters.slice(18, 27);
 
   $scope.clickedLetters = [];
 
@@ -53,6 +53,11 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
       alert("You lose!");
       gameOver()
     }
+  }
+
+  $scope.clickedHelp = function() {
+    $(".letters-section").toggle();
+    $(".help-section").toggle();
   }
 
   function makeGuess(letter) {
@@ -105,3 +110,31 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
     return (arr.indexOf(obj) != -1);
   }
 });
+
+app.controller('HelpCtrl', function($scope, Api) {
+  $scope.$on('guessesUpdated', function() {
+    $scope.guessesRemaining = Api.guesses;
+  });
+
+  $scope.clickedBack = function() {
+    $(".letters-section").toggle();
+    $(".help-section").toggle();
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -66,7 +66,42 @@
           </div>
           <div class="row letter-row">
             <div class="col letter" ng-repeat="letter in thirdRowLetters track by $index" ng-click="clickedLetter(letter)">
-              {{letter}}
+              <div ng-if="letter!=''">
+                {{letter}}
+              </div>
+            </div>
+            <div class="col icon ion-help-circled help-icon" ng-click="clickedHelp()"></div>
+          </div>
+        </div>
+        <div ng-controller="HelpCtrl" class="help-section" style="display: none;">
+          <div class="guesses-remaining-text">
+            <span>
+              You have 
+            </span>
+            <span style="font-weight: bold;">
+              {{guessesRemaining}}
+            </span>
+            <span>
+              {{guessesRemaining | pluralizeGuesses}} remaining!
+            </span>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col col-25">
+                <button class="button button-light" ng-click="clickedBack()">
+                  Back
+                </button>
+              </div>
+              <div class="col col-50" style="text-align: center;">
+                <button class="button button-energized" ng-click="">
+                  Show hint
+                </button>
+              </div>
+              <div class="col col-25" style="text-align: right;">
+                <button class="button button-light" ng-click="">
+                  About
+                </button>
+              </div>
             </div>
           </div>
         </div>

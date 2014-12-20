@@ -60,6 +60,7 @@ app.factory('Api', function($http, $rootScope) {
       Api.original_guesses = result.data.guesses;
       Api.guesses = Api.original_guesses;
       setStepSize(Api.guesses);
+      $rootScope.$broadcast("guessesSetup");
       $rootScope.$broadcast("guessesUpdated");
     });
   }
@@ -74,6 +75,7 @@ app.factory('Api', function($http, $rootScope) {
 
   Api.reduceGuess = function() {
     Api.guesses -= 1;
+    $rootScope.$broadcast("guessesUpdated");
   }
 
   Api.noMoreGuesses = function() {
@@ -92,3 +94,33 @@ app.factory('Api', function($http, $rootScope) {
 
   return Api;
 });
+
+app.filter('pluralizeGuesses', function() {
+  return function(guess) {
+    if (guess == 1) {
+      return " guess"
+    } else {
+      return " guesses"
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

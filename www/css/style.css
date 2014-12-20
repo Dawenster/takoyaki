@@ -51,7 +51,7 @@
   opacity: 0;
 }
 
-.letters-section {
+.letters-section, .help-section {
   position: absolute;
   bottom: 0px !important;
   width: 100%;
@@ -66,6 +66,12 @@
 
 .letter {
   font-size: 24px;
+}
+
+.help-icon {
+  font-size: 24px;
+  margin-top: -2px;
+  cursor: pointer;
 }
 
 .strikethrough {
@@ -86,4 +92,9 @@
   -ms-transform:rotate(-45deg);
   -o-transform:rotate(-45deg);
   transform:rotate(-45deg);
+}
+
+.guesses-remaining-text {
+  text-align: center;
+  font-size: 16px;
 }
