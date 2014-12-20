@@ -30,6 +30,18 @@ app.factory("Phrase", function() {
   return Phrase;
 });
 
+app.factory("Animations", function(Api) {
+  var Animations = {};
+
+  Animations.moveOcto = function(Api) {
+    $(".octo, .stick").animate({
+      right: "+=" + Api.stepSize,
+    }, 1000 );
+  }
+
+  return Animations;
+});
+
 app.factory('Api', function($http, $rootScope) {
   var root_url = "http://localhost:3000/api/";
   // var root_url = "http://takoyaki.herokuapp.com/api/";
@@ -41,11 +53,13 @@ app.factory('Api', function($http, $rootScope) {
   Api.original_guesses = null;
   Api.guesses = null;
   Api.phrase = null;
+  Api.stepSize = 0;
 
   Api.gameDetails = function() {
     $http.get(game_details_url).then(function(result) {
       Api.original_guesses = result.data.guesses;
       Api.guesses = Api.original_guesses;
+      setStepSize(Api.guesses);
       $rootScope.$broadcast("guessesUpdated");
     });
   }
@@ -68,6 +82,12 @@ app.factory('Api', function($http, $rootScope) {
 
   Api.resetGuesses = function() {
     Api.guesses = Api.original_guesses;
+  }
+
+  function setStepSize(guesses) {
+    var width = $(window).width();
+    var adjustedWidth = width - 95 // 95 is a constant to offset so the image doesn't go edge to edge 
+    Api.stepSize = adjustedWidth / guesses;
   }
 
   return Api;

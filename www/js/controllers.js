@@ -37,7 +37,7 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
   }
 });
 
-app.controller('LettersCtrl', function($scope, Letters, Api, Phrase) {
+app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations) {
   var letters = Letters.all();
   $scope.firstRowLetters = letters.slice(0, 9);
   $scope.secondRowLetters = letters.slice(9, 17);
@@ -64,6 +64,7 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase) {
 
     if (original_num_covered_letters == subsequent_num_covered_letters) {
       Api.reduceGuess();
+      Animations.moveOcto(Api);
     }
 
     strikeoutClickedLetters();
