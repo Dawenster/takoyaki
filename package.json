@@ -1,7 +1,7 @@
 {
-  "name": "takoyaki",
+  "name": "Takoyaki",
   "version": "1.0.0",
-  "description": "takoyaki: An Ionic project",
+  "description": "Project for a special person",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
