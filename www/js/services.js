@@ -52,6 +52,7 @@ app.factory('Api', function($http, $rootScope) {
   // var root_url = "http://takoyaki.herokuapp.com/api/";
   var game_details_url = root_url + "game_details";
   var next_phrase_url = root_url + "next_phrase";
+  var finished_game_url = root_url + "finished_game";
 
   var Api = {};
 
@@ -66,8 +67,14 @@ app.factory('Api', function($http, $rootScope) {
       Api.original_guesses = result.data.guesses;
       Api.guesses = Api.original_guesses;
       setStepSize(Api.guesses);
+
+      Api.lovePoints = result.data.love_points;
+
       $rootScope.$broadcast("detailsSetup");
       $rootScope.$broadcast("detailsUpdated");
+      if (Api.lovePoints == 0) {
+        $rootScope.$broadcast("firstTimeInApp");
+      }
     });
   }
 
@@ -76,6 +83,18 @@ app.factory('Api', function($http, $rootScope) {
       var phrase = jQuery.parseJSON(result.data.phrase);
       Api.phrase = phrase;
       $rootScope.$broadcast("phraseUpdated");
+    });
+  }
+
+  Api.finishedGame = function() {
+    var params = {
+      phrase_id: Api.phrase.id,
+      guesses: Api.original_guesses,
+      guesses_left: Api.guesses
+    }
+    $http.get(finished_game_url, {params: params}).then(function(result) {
+      Api.lovePoints = result.data.love_points;
+      $rootScope.$broadcast("gamePosted");
     });
   }
 

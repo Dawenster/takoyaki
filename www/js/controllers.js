@@ -94,6 +94,7 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
   }
 
   function gameOver() {
+    Api.finishedGame();
     $scope.clickedLetters = [];
     Phrase.coverEverythingUp();
     Api.nextPhrase();
@@ -141,8 +142,16 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
 app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
   $scope.showHint = false;
 
+  $scope.$on('firstTimeInApp', function() {
+    $scope.modal.show();
+  });
+
   $scope.$on('detailsUpdated', function() {
     $scope.guessesRemaining = Api.guesses;
+    $scope.lovePoints = Api.lovePoints;
+  });
+
+  $scope.$on('gamePosted', function() {
     $scope.lovePoints = Api.lovePoints;
   });
 
