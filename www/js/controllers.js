@@ -106,18 +106,24 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
   }
 
   function makeGuess(letter) {
-    $scope.clickedLetters.push(letter)
+    if (!alreadyClicked(letter)) {
+      $scope.clickedLetters.push(letter)
 
-    var original_num_covered_letters = $(".covered").length;
-    uncoverLetters(letter);
-    var subsequent_num_covered_letters = $(".covered").length;
+      var original_num_covered_letters = $(".covered").length;
+      uncoverLetters(letter);
+      var subsequent_num_covered_letters = $(".covered").length;
 
-    if (original_num_covered_letters == subsequent_num_covered_letters) {
-      Api.reduceGuess();
-      Animations.moveOcto(Api);
+      if (original_num_covered_letters == subsequent_num_covered_letters) {
+        Api.reduceGuess();
+        Animations.moveOcto(Api);
+      }
+
+      strikeoutClickedLetters();
     }
+  }
 
-    strikeoutClickedLetters();
+  function alreadyClicked(letter) {
+    return include($scope.clickedLetters, letter);
   }
 
   function gameOver() {
