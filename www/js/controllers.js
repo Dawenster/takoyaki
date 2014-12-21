@@ -46,12 +46,30 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
   $scope.clickedLetters = [];
 
   $scope.clickedLetter = function(letter) {
+    var phraseAndHint = "Phrase: " + Api.phrase.text + "\nHint: " + Api.phrase.hint;
+
     makeGuess(letter);
     if (isComplete()) {
-      gameOver()
+      swal({
+        title: "Awkward high five!",
+        text: "You saved the Octo :)\n\n" + phraseAndHint + ".\n\nYou gained " + Api.guesses + " love " + pluralizePoints(Api.guesses) + ".",
+        type: "success",
+        confirmButtonText: "Next!"
+      });
+      gameOver();
     } else if (Api.noMoreGuesses()) {
-      alert("You lose!");
-      gameOver()
+      setTimeout(
+        function(){
+          gameOver();
+          swal({
+            title: "No goot!",
+            text: "The ninjas ate the octo...\n\n" + phraseAndHint + ".\n\nYou lost 1 love point. Gawd.",
+            type: "error",
+            confirmButtonText: "Next..."
+          });
+        },
+        1500
+      );
     }
   }
 
@@ -80,6 +98,7 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
     Phrase.coverEverythingUp();
     Api.nextPhrase();
     Api.resetGuesses();
+    Animations.resetOcto();
   }
 
   function uncoverLetters(letter) {
@@ -108,6 +127,14 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
 
   function include(arr,obj) {
     return (arr.indexOf(obj) != -1);
+  }
+
+  function pluralizePoints(points) {
+    if (points == 1) {
+      return "point";
+    } else {
+      return "points";
+    }
   }
 });
 
@@ -152,14 +179,6 @@ app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-  // // Execute action on hide modal
-  // $scope.$on('modal.hidden', function() {
-  //   // Execute action
-  // });
-  // // Execute action on remove modal
-  // $scope.$on('modal.removed', function() {
-  //   // Execute action
-  // });
 });
 
 

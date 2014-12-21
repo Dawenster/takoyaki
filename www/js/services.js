@@ -39,6 +39,11 @@ app.factory("Animations", function(Api) {
     }, 1000 );
   }
 
+  Animations.resetOcto = function(Api) {
+    $(".octo").css({'right': 10});
+    $(".stick").css({'right': -50});
+  }
+
   return Animations;
 });
 

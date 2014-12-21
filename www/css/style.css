@@ -107,3 +107,8 @@
 .about-modal-content {
   padding: 20px;
 }
+
+.sweet-alert h2 {
+  font-size: 28px !important;
+  margin: 10px 0px !important;
+}
