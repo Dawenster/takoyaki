@@ -60,13 +60,13 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
     } else if (Api.noMoreGuesses()) {
       setTimeout(
         function(){
-          gameOver();
           swal({
             title: "No goot!",
             text: "The ninjas ate the octo...\n\n" + phraseAndHint + ".\n\nYou lost 1 love point. Gawd.",
             type: "error",
             confirmButtonText: "Next..."
           });
+          gameOver();
         },
         1500
       );
