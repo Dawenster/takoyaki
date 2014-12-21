@@ -54,6 +54,7 @@
 .letters-section, .help-section {
   position: absolute;
   bottom: 0px !important;
+  height: 143px;
   width: 100%;
   border-top: 1px solid black;
   padding-top: 10px;
@@ -97,6 +98,10 @@
 .guesses-remaining-text, .current-love-points, .current-love-points-status {
   text-align: center;
   font-size: 16px;
+}
+
+.hint-holder {
+  padding: 20px;
 }
 
 .about-modal-content {

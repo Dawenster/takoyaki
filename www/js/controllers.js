@@ -119,6 +119,10 @@ app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
     $scope.lovePoints = Api.lovePoints;
   });
 
+  $scope.$on('phraseUpdated', function() {
+    $scope.hint = Api.phrase.hint;
+  });
+
   $scope.clickedBack = function() {
     $(".letters-section").toggle();
     $(".help-section").toggle();
