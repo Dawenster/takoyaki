@@ -39,6 +39,12 @@ app.factory("Animations", function(Api) {
     }, 1000 );
   }
 
+  Animations.moveOctoToLastStep = function(Api) {
+    $(".octo, .stick").animate({
+      right: "+=" + Api.stepSize * (Api.guesses - 1),
+    }, 1000 );
+  }
+
   Animations.resetOcto = function(Api) {
     $(".octo").css({'right': 10});
     $(".stick").css({'right': -50});
@@ -103,7 +109,7 @@ app.factory('Api', function($http, $rootScope) {
     $rootScope.$broadcast("detailsUpdated");
   }
 
-  Api.reduceGuessDueToHint = function() {
+  Api.reduceGuessAfterHintShown = function() {
     Api.guesses = 1;
     $rootScope.$broadcast("detailsUpdated");
   }

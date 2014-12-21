@@ -139,7 +139,7 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
   }
 });
 
-app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
+app.controller('HelpCtrl', function($scope, $ionicModal, Api, Animations) {
   $scope.showHint = false;
 
   $scope.$on('firstTimeInApp', function() {
@@ -167,7 +167,8 @@ app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
 
   $scope.$watch('showHint', function(){
     $scope.showHintButtonText = $scope.showHint ? 'Hide hint' : 'Show hint';
-    Api.reduceGuessDueToHint();
+    Animations.moveOctoToLastStep(Api);
+    Api.reduceGuessAfterHintShown();
   });
 
   $ionicModal.fromTemplateUrl('about_modal.html', {
