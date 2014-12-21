@@ -101,7 +101,9 @@
 }
 
 .hint-holder {
-  padding: 20px;
+  margin-top: -10px;
+  padding: 10px;
+  height: 70px;
 }
 
 .about-modal-content {
