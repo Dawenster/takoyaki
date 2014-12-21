@@ -158,6 +158,7 @@ app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
 
   $scope.$watch('showHint', function(){
     $scope.showHintButtonText = $scope.showHint ? 'Hide hint' : 'Show hint';
+    Api.reduceGuessDueToHint();
   });
 
   $ionicModal.fromTemplateUrl('about_modal.html', {

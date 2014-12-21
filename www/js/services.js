@@ -84,6 +84,11 @@ app.factory('Api', function($http, $rootScope) {
     $rootScope.$broadcast("detailsUpdated");
   }
 
+  Api.reduceGuessDueToHint = function() {
+    Api.guesses = 1;
+    $rootScope.$broadcast("detailsUpdated");
+  }
+
   Api.noMoreGuesses = function() {
     return Api.guesses == 0;
   }
