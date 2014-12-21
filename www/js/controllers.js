@@ -122,6 +122,7 @@ app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
   $scope.clickedBack = function() {
     $(".letters-section").toggle();
     $(".help-section").toggle();
+    $scope.showHint = false;
   }
 
   $scope.$watch('showHint', function(){
