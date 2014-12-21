@@ -57,8 +57,8 @@ app.factory("Animations", function(Api, $rootScope) {
 });
 
 app.factory('Api', function($http, $rootScope) {
-  var root_url = "http://localhost:3000/api/";
-  // var root_url = "http://takoyaki.herokuapp.com/api/";
+  // var root_url = "http://localhost:3000/api/";
+  var root_url = "http://takoyaki.herokuapp.com/api/";
   var game_details_url = root_url + "game_details";
   var next_phrase_url = root_url + "next_phrase";
   var finished_game_url = root_url + "finished_game";
@@ -123,6 +123,7 @@ app.factory('Api', function($http, $rootScope) {
 
   Api.resetGuesses = function() {
     Api.guesses = Api.original_guesses;
+    $rootScope.$broadcast("detailsUpdated");
   }
 
   function setStepSize(guesses) {
