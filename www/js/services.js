@@ -103,13 +103,13 @@ app.filter('loveLevel', function() {
     } else if (lovePoints <= 25 ) {
       return "Mediocre lover";
     } else if (lovePoints <= 50) {
-      return "Mediocre+ lover";
-    } else if (lovePoints <= 100) {
       return "B- lover";
+    } else if (lovePoints <= 100) {
+      return "Goot lover";
     } else if (lovePoints < 238) {
       return "But I lover";
     } else {
-      return "Forever lover :)"
+      return "Forever lover :*...";
     }
   }
 });
