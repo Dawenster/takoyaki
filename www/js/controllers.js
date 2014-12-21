@@ -111,7 +111,7 @@ app.controller('LettersCtrl', function($scope, Letters, Api, Phrase, Animations)
   }
 });
 
-app.controller('HelpCtrl', function($scope, Api) {
+app.controller('HelpCtrl', function($scope, $ionicModal, Api) {
   $scope.showHint = false;
 
   $scope.$on('detailsUpdated', function() {
@@ -126,7 +126,35 @@ app.controller('HelpCtrl', function($scope, Api) {
 
   $scope.$watch('showHint', function(){
     $scope.showHintButtonText = $scope.showHint ? 'Hide hint' : 'Show hint';
-  })
+  });
+
+  $ionicModal.fromTemplateUrl('about_modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openAboutModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeAboutModal = function() {
+    $scope.modal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // // Execute action on hide modal
+  // $scope.$on('modal.hidden', function() {
+  //   // Execute action
+  // });
+  // // Execute action on remove modal
+  // $scope.$on('modal.removed', function() {
+  //   // Execute action
+  // });
 });
 
 

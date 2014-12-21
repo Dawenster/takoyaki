@@ -25,7 +25,6 @@
     <script src="js/services.js"></script>
   </head>
   <body ng-app="starter">
-
     <ion-pane>
       <ion-content>
         <div ng-controller="PlayCtrl">
@@ -116,7 +115,7 @@
                 </button>
               </div>
               <div class="col col-25" style="text-align: right;">
-                <button class="button button-light" ng-click="">
+                <button class="button button-light" ng-click="openAboutModal()">
                   About
                 </button>
               </div>
@@ -125,5 +124,17 @@
         </div>
       </ion-content>
     </ion-pane>
+    <script id="about_modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-energized">
+          <h1 class="title">About Takoyaki</h1>
+        </ion-header-bar>
+        <ion-content>
+          <div class="about-modal-content">
+            Harro sweetie!
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
   </body>
 </html>
