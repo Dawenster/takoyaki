@@ -30,24 +30,27 @@ app.factory("Phrase", function() {
   return Phrase;
 });
 
-app.factory("Animations", function(Api) {
+app.factory("Animations", function(Api, $rootScope) {
   var Animations = {};
 
   Animations.moveOcto = function(Api) {
     $(".octo, .stick").animate({
       right: "+=" + Api.stepSize,
     }, 1000 );
+    $rootScope.$broadcast("octoMoved");
   }
 
   Animations.moveOctoToLastStep = function(Api) {
     $(".octo, .stick").animate({
       right: "+=" + Api.stepSize * (Api.guesses - 1),
     }, 1000 );
+    $rootScope.$broadcast("octoMoved");
   }
 
   Animations.resetOcto = function(Api) {
     $(".octo").css({'right': 10});
     $(".stick").css({'right': -50});
+    $rootScope.$broadcast("octoMoved");
   }
 
   return Animations;

@@ -4,6 +4,11 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
   Api.gameDetails();
   Api.nextPhrase();
 
+  $scope.showNormalOcto = true;
+  $scope.showConcernedOcto = false;
+  $scope.showWorriedOcto = false;
+  $scope.showDeadOcto = false;
+
   $scope.$on('detailsSetup', function() {
     $scope.guesses = Api.guesses;
   });
@@ -12,6 +17,28 @@ app.controller('PlayCtrl', function($scope, Api, Letters) {
     $scope.splitPhraseText = splitPhrase(Api.phrase.text);
     Letters.removeCrossedOutLetters();
   });
+
+  $scope.$on('octoMoved', function() {
+    var guessesRemaining = Api.guesses;
+    hideAllOctos();
+
+    if (guessesRemaining == 2) {
+      $scope.showConcernedOcto = true;
+    } else if (guessesRemaining == 1) {
+      $scope.showWorriedOcto = true;
+    } else if (guessesRemaining == 0) {
+      $scope.showDeadOcto = true;
+    } else {
+      $scope.showNormalOcto = true;
+    }
+  });
+
+  function hideAllOctos() {
+    $scope.showNormalOcto = false;
+    $scope.showConcernedOcto = false;
+    $scope.showWorriedOcto = false;
+    $scope.showDeadOcto = false;
+  }
 
   function splitPhrase(phrase) {
     var phraseArr = [];

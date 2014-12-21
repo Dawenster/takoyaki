@@ -37,7 +37,10 @@
               <img ng-src="img/stick.png"/ width="150" style="margin: 10px;">
             </div>
             <div class="octo">
-              <img ng-src="img/octo_small_hole.png"/ width="50" style="margin: 10px;">
+              <img ng-show="showNormalOcto" ng-src="img/octo_small_hole.png"/ width="50" style="margin: 10px;">
+              <img ng-show="showConcernedOcto" ng-src="img/concerned_octo.png"/ width="50" style="margin: 10px;">
+              <img ng-show="showWorriedOcto" ng-src="img/worried_octo.png"/ width="50" style="margin: 10px;">
+              <img ng-show="showDeadOcto" ng-src="img/dead_octo.png"/ width="50" style="margin: 10px;">
             </div>
           </div>
 
